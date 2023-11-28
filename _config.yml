@@ -21,5 +21,5 @@ plugins:
 header_pages:
   - navigation/blog.md
   - navigation/search.html
-
+  - 2023-11-27-CSSE-oop-game-levels.md
 
