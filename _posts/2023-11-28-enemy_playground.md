@@ -240,7 +240,8 @@ courses: {'compsci': {'week': 12}}
         {
             player.velocity.y = -20;
             goomba.visible = false;
-            console.log(goomba.visible);
+            goomba.position.x === -1000;
+            goomba.position.y === 1000;
         }
         if (
             goomba.position.x >= platform.position.x &&
