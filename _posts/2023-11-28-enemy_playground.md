@@ -2,7 +2,7 @@
 layout: notebook
 title: Enemy Project Playground
 type: tangibles
-courses: {'compsci': {'week': 12}}
+courses: {'csse': {'week': 12}}
 ---
 
 <style>
