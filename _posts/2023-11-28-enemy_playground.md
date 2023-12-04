@@ -113,6 +113,7 @@ courses: {'csse': {'week': 12}}
           }
         }
         update() {
+            this.position.x += this.velocity.x;
             this.draw();
         }
     }
