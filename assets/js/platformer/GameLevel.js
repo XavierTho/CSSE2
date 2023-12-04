@@ -13,6 +13,7 @@ class GameLevel {
         this.platformImg = gameObject.platform?.file;
         this.playerImg = gameObject.player?.file;
         this.playerData = gameObject?.player;
+        this.goombaImg = gameObject.goomba?.file; // THIS IS A CHANGE MADE BY JUSTIN
         this.tubeImg = gameObject.tube?.file;
         this.isComplete = gameObject?.callback; // function that determines if level is complete
         GameEnv.levels.push(this);
