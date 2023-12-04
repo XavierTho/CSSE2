@@ -4,7 +4,6 @@ owner_name: Xavier Thompson
 github_username: XavierTho
 github_repo: "CSSE2"
 baseurl: "/CSSE2"
-baseurl: "/teacher_portfolio"
 future: true
 remote_theme: jekyll/minima
 # remote_theme: pages-themes/dinky@v0.2.0
