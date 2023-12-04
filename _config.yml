@@ -3,7 +3,7 @@ description: "August 2023 to June 2024"
 owner_name: Xavier Thompson
 github_username: XavierTho
 github_repo: "CSSE2"
-baseurl: "/teacher_portfolio"
+baseurl: "/CSSE2"
 future: true
 remote_theme: jekyll/minima
 # remote_theme: pages-themes/dinky@v0.2.0
