@@ -1,7 +1,7 @@
 ---
 layout: notebook
 title: Enemy Project Playground
-type: tangibles
+type: ccc
 courses: {'csse': {'week': 12}}
 ---
 
@@ -18,6 +18,8 @@ courses: {'csse': {'week': 12}}
     canvas.width = 650;
     canvas.height = 400;
     let gravity = 1.5;
+    let gamePaused = false;
+    //Player Properties
     class Player {
         constructor() {
             this.position = {
@@ -139,12 +141,14 @@ courses: {'csse': {'week': 12}}
         }
     }
     function animate() {
-        requestAnimationFrame(animate);
-        c.clearRect(0, 0, canvas.width, canvas.height);
-        platform.draw();
-        player.update();
-        tube.draw();
-        blockObject.draw();
+        if (!gamePaused) {
+            requestAnimationFrame(animate);
+            c.clearRect(0, 0, canvas.width, canvas.height);
+            platform.draw();
+            player.update();
+            tube.draw();
+            blockObject.draw();
+        }
         //--
         // NEW CODE - UPDATE GOOMBA ANIMATION
         //--
@@ -229,7 +233,8 @@ courses: {'csse': {'week': 12}}
             }
             //--
             // NEW CODE - GOOMBA COLLISION DETECTION
-            //--
+            //-
+        //If Player Jumps on Goomba, Kill Goomba
         if(
             player.position.y + player.height <= goomba.position.y &&
             player.position.y + player.height + player.velocity.y >= goomba.position.y &&
@@ -239,8 +244,18 @@ courses: {'csse': {'week': 12}}
         {
             player.velocity.y = -20;
             goomba.visible = false;
-            goomba.position.x === -1000;
-            goomba.position.y === 1000;
+            goomba.width = 0;
+            goomba.height = 0;
+        }
+        //If Goomba Touches Player, Player Dies
+        if(
+            player.position.y < goomba.position.y + goomba.height &&
+            player.position.y + player.height > goomba.position.y &&
+            player.position.x < goomba.position.x + goomba.width &&
+            player.position.x + player.width > goomba.position.x
+        )
+        {
+            gamePaused = true;
         }
         if (
             goomba.position.x >= platform.position.x &&
