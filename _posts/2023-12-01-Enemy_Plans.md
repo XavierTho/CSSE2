@@ -33,6 +33,8 @@ The first & most important aspect for our enemy will be applying collisions to i
         {
             // Game should be paused & Game Over Screen Appears
             // Button or prompt should appear allowing for the game to be reset
+
+            //The game could alternatively automatically reset
         }
 ```
 
@@ -40,6 +42,24 @@ As you can see the code to detect the different type of interactions between the
 
 ## Movement
 In the game, we plan to have multiple games which in their own respect will defend their own part of the map. Different Goombas will be specified to occupy certain areas. For example, We have a 400x400 canvas. Goomba 1 continually guards 0-200x, while Goomba 2 continually guards 201-400x. This creates a very simple method in which we can use to move the Goombas around. The exact way such will be implemented is still be decided.
+
+## Death Animation 
+We need a visually appealing and an effective means of "killing" the Goomba and removing it from the game. How this will be done is simple. When the player jumps on the Goomba, the goomba will begin shrinking into itself till it no longer can be seen. Here's an example on how this could be done:
+```
+function murder() {
+        let i = 1;
+        let intervalId = setInterval(() => {
+            if (i >= 0) {
+                canvas.style.transform = `scale(1, ${i.toFixed(1)})`;
+                i -= 0.1;
+            } else {
+                clearInterval(intervalId);
+            }
+        }, 100);
+    }
+```
+
+Using the collision code we went over above, we can run the murder function when mario so happens to jump on the Goomba. The murder function will shrink the Goomba into oblivion, effectively removing it from the game. Even while the Goomba sprite still technically exists is dimensions are that of 0, meaning it cannot collide with the player once it has died.
 
 # Homework
 As students, it's expected that you implement at the minimum, collision code for the Goomba and make sure it moves back and forth across the map.
