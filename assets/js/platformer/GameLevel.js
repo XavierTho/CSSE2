@@ -3,6 +3,7 @@ import Background from './Background.js';
 import Platform from './Platform.js';
 import Player from './Player.js';
 import Tube from './Tube.js';
+import Enemy from './Enemy.js';
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
@@ -13,7 +14,7 @@ class GameLevel {
         this.platformImg = gameObject.platform?.file;
         this.playerImg = gameObject.player?.file;
         this.playerData = gameObject?.player;
-        this.goombaImg = gameObject.goomba?.file; // THIS IS A CHANGE MADE BY JUSTIN
+        this.enemyImg = gameObject.enemy?.file; // THIS IS A CHANGE MADE BY JUSTIN
         this.tubeImg = gameObject.tube?.file;
         this.isComplete = gameObject?.callback; // function that determines if level is complete
         GameEnv.levels.push(this);
@@ -35,6 +36,9 @@ class GameLevel {
         }
         if (this.tubeImg) {
             imagesToLoad.push(this.loadImage(this.tubeImg));
+        }
+        if (this.enemyImg) {
+            imagesToLoad.push(this.loadImage(this.enemyImg));
         }
 
         try {
@@ -69,6 +73,14 @@ class GameLevel {
                 document.querySelector("#canvasContainer").appendChild(playerCanvas);
                 const playerSpeedRatio = 0.7;
                 new Player(playerCanvas, loadedImages[i], playerSpeedRatio, this.playerData);
+                i++;
+            }
+            if (this.enemyImg) {
+                const enemyCanvas = document.createElement("canvas");
+                enemyCanvas.id = "enemy"
+                document.querySelector("#canvasContainer").appendChild(enemyCanvas);
+                const enemySpeedRatio = 0.7;
+                new Enemy(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
                 i++;
             }
 
