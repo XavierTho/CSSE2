@@ -1,0 +1,2 @@
+class Goomba extends GameObject {
+}
