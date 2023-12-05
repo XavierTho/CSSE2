@@ -35,11 +35,11 @@ class GameLevel {
         if (this.playerImg) {
             imagesToLoad.push(this.loadImage(this.playerImg));
         }
-        if (this.tubeImg) {
-            imagesToLoad.push(this.loadImage(this.tubeImg));
-        }
         if (this.enemyImg) {
             imagesToLoad.push(this.loadImage(this.enemyImg));
+        }
+        if (this.tubeImg) {
+            imagesToLoad.push(this.loadImage(this.tubeImg));
         }
 
         try {

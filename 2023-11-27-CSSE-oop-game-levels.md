@@ -84,8 +84,8 @@ image: /images/platformer/backgrounds/hills.png
       enemies: {
         goomba: {
           src: "/images/platformer/sprites/goomba.png",
-          width: 40,
-          height: 40,
+          width: 100,
+          height: 200,
         }
     },
   }
