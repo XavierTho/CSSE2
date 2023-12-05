@@ -10,6 +10,7 @@ export class Enemy extends Character {
             enemyData.width, 
             enemyData.height, 
         );
+        this.destruction = 0;
 
         // Player Data is required for Animations
         this.enemyData = enemyData;
@@ -29,6 +30,11 @@ export class Enemy extends Character {
 
         //Initially get the enemy moving
         this.x += this.speed;
+        
+        //detect if the goomba is dead
+        if (this.destruction === 1) {
+            this.destroy();
+        }
     }
 }
 
