@@ -36,6 +36,20 @@ export class Enemy extends Character {
             this.destroy();
         }
     }
+
+    /* murder() {
+        let i = 1;
+        let intervalId = setInterval(() => {
+            if (i >= 0) {
+                canvas.style.transform = `scale(1, ${i.toFixed(1)})`;
+                console.log("Death " + i.toFixed(1));
+                i -= 0.1;
+            } else {
+                clearInterval(intervalId);
+            }
+        }, 50);
+    } */
 }
+
 
 export default Enemy

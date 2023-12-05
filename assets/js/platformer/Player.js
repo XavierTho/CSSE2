@@ -124,15 +124,18 @@ export class Player extends Character{
             // Collision with the left side of the Tube
             if (this.collisionData.touchPoints.other.left) {
                 this.movement.right = false;
+                console.log("tube touch left");
             }
             // Collision with the right side of the Tube
             if (this.collisionData.touchPoints.other.right) {
                 this.movement.left = false;
+                console.log("tube touch right");
             }
             // Collision with the top of the player
             if (this.collisionData.touchPoints.other.ontop) {
                 this.movement.down = false;
                 this.x = this.collisionData.touchPoints.other.x;
+                console.log("tube touch top");
             }
         } else {
             // Reset movement flags if not colliding with a tube
@@ -140,10 +143,7 @@ export class Player extends Character{
             this.movement.right = true;
             this.movement.down = true;
         }
-    }
-
-    // Player action on enemy collisions
-    collisionAction() {
+        // Enemy collision
         if (this.collisionData.touchPoints.other.id === "enemy") {
             // Collision with the left side of the Enemy
             if (this.collisionData.touchPoints.other.left) {
@@ -160,7 +160,7 @@ export class Player extends Character{
             }
         }
     }
-    
+        
     // Event listener key down
     handleKeyDown(event) {
         if (this.playerData.hasOwnProperty(event.key)) {
