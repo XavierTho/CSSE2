@@ -1,4 +1,5 @@
 import Character from './Character.js';
+import GameEnv from './GameEnv.js';
 
 export class Enemy extends Character {
     // constructors sets up Character object 
@@ -12,9 +13,26 @@ export class Enemy extends Character {
 
         // Player Data is required for Animations
         this.enemyData = enemyData;
+
+        this.spriteScale = 1;
+
+        //Initial Position of Goomba
+        this.x = .60 * GameEnv.innerWidth;
     }
+
+    update() {
+        // Check if the enemy is at the left or right boundary
+        if (this.x <= 0 || this.x + this.width >= GameEnv.innerWidth) {
+            // Change direction by reversing the speed
+            this.speed = -this.speed;
+        }
+
+        //Initially get the enemy moving
+        this.x += this.speed;
+    }
+
     
-    death() {
+    killGoomba() {
         let currentScale = 1;
         let intervalId = setInterval(() => {
             if (currentScale >= 0) {
@@ -28,29 +46,5 @@ export class Enemy extends Character {
         super.destroy();
     }
 }
-// This code did not work, it was used to attempt to move the original position of the goomba
-// Please refer to the character.js to change spawn location. You guy's got this.
-/* size() {
-    // Formula for Height should be on constant ratio, using a proportion of 832
-    const scaledHeight = GameEnv.innerHeight * (100 / 832);
-    // Formula for Width is scaled: scaledWidth/scaledHeight == this.width/this.height
-    const scaledWidth = scaledHeight * this.aspect_ratio;
-    const enemyX = .60 * GameEnv.innerWidth;
-    const enemyY = (GameEnv.bottom - scaledHeight);
-
-    // set variables used in Display and Collision algorithms
-    this.bottom = enemyY;
-    this.collisionHeight = scaledHeight;
-    this.collisionWidth = scaledWidth;
-
-    //this.canvas.width = this.width; 
-    //this.canvas.height = this.height;
-    this.canvas.style.width = `${scaledWidth}px`;
-    this.canvas.style.height = `${scaledHeight}px`;
-    this.canvas.style.position = 'absolute';
-    this.canvas.style.left = `${enemyX}px`;
-    this.canvas.style.top = `${enemyY}px`; 
-
-} */
 
 export default Enemy
