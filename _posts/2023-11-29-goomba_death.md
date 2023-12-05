@@ -53,7 +53,7 @@ courses: { csse: { week: 13 } }
             } else {
                 clearInterval(intervalId);
             }
-        }, 100);
+        }, 50);
     }
     function reset() {
         canvas.style.transform = 'scale(1)';
