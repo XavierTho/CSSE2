@@ -1,14 +1,18 @@
-import GameEnv from './GameEnv.js';
 import Character from './Character.js';
 
 export class Enemy extends Character {
-    constructor (canvas, image, speedRatio, enemyData) {
+    // constructors sets up Character object 
+    constructor(canvas, image, speedRatio, enemyData){
         super(canvas, 
-            image,
+            image, 
             speedRatio,
-            enemyData.width,
-            enemyData.height,
-            );
+            enemyData.width, 
+            enemyData.height, 
+        );
+
+        // Player Data is required for Animations
         this.enemyData = enemyData;
     }
 }
+
+export default Enemy

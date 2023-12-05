@@ -81,16 +81,15 @@ image: /images/platformer/backgrounds/hills.png
           d: { row: 0, frames: 15, idleFrame: { column: 7, frames: 0 } }
         }
       },
-      // Change Made By Justin
       enemies: {
         goomba: {
-          src: 'https://samayass.github.io/samayaCSA/images/goomba.png',
-          width: 448,
-          height: 452
+          src: "/images/platformer/sprites/goomba.png",
+          width: 40,
+          height: 40,
         }
-      }
-      // Till here
-    };
+    },
+  }
+
 
     // add File to assets, ensure valid site.baseurl
     Object.keys(assets).forEach(category => {
