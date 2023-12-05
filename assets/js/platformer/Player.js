@@ -1,5 +1,6 @@
 import GameEnv from './GameEnv.js';
 import Character from './Character.js';
+import deathController from './Death.js';
 
 export class Player extends Character{
     // constructors sets up Character object 
@@ -12,6 +13,8 @@ export class Player extends Character{
         );
         // Player Data is required for Animations
         this.playerData = playerData;
+
+        this.spriteScale = 1;
 
         // Player control data
         this.pressedKeys = {};
@@ -115,7 +118,7 @@ export class Player extends Character{
         super.update();
     }
 
-    // Player action on collisions
+    // Player action on tube collisions
     collisionAction() {
         if (this.collisionData.touchPoints.other.id === "tube") {
             // Collision with the left side of the Tube
@@ -136,6 +139,24 @@ export class Player extends Character{
             this.movement.left = true;
             this.movement.right = true;
             this.movement.down = true;
+        }
+    }
+
+    // Player action on enemy collisions
+    collisionAction() {
+        if (this.collisionData.touchPoints.other.id === "enemy") {
+            // Collision with the left side of the Enemy
+            if (this.collisionData.touchPoints.other.left) {
+                deathController.setDeath(1);
+            }
+            // Collision with the right side of the Enemy
+            if (this.collisionData.touchPoints.other.right) {
+                deathController.setDeath(1);
+            }
+            // Collision with the top of the Enemy
+            if (this.collisionData.touchPoints.other.ontop) {
+                console.log("Bye Goomba");
+            }
         }
     }
     
