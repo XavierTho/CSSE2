@@ -2,12 +2,14 @@ import GameEnv from './GameEnv.js';
 import GameObject from './GameObject.js';
 
 class Character extends GameObject {
-    constructor(canvas, image, speedRatio, spriteWidth, spriteHeight) {
+    constructor(canvas, image, speedRatio, spriteWidth, spriteHeight, spriteScale) {
         super(canvas, image, speedRatio);
 
         // sprite sizes
         this.spriteWidth = spriteWidth;
         this.spriteHeight = spriteHeight;
+
+        this.spriteScale = spriteScale;
 
         // sprint frame management
         this.minFrame = 0;
@@ -56,8 +58,8 @@ class Character extends GameObject {
     */
     draw() {
         // Set fixed dimensions and position for the Character
-        this.canvas.width = this.canvasWidth;
-        this.canvas.height = this.canvasHeight;
+        this.canvas.width = this.canvasWidth * this.spriteScale;
+        this.canvas.height = this.canvasHeight * this.spriteScale;
         this.canvas.style.width = `${this.canvas.width}px`;
         this.canvas.style.height = `${this.canvas.height}px`;
         this.canvas.style.position = 'absolute';
