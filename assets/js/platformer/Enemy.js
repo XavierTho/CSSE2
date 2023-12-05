@@ -30,20 +30,19 @@ export class Enemy extends Character {
         //Initially get the enemy moving
         this.x += this.speed;
     }
-
     
     killGoomba() {
-        let currentScale = 1;
-        let intervalId = setInterval(() => {
+        currentScale = 1;
+        enemyCanvas = document.getElementById("enemy")
+        intervalId = setInterval(() => {
             if (currentScale >= 0) {
-                canvas.style.transform = `scale(1, ${currentScale.toFixed(1)})`;
+                enemyCanvas.style.transform = `scale(1, ${currentScale.toFixed(1)})`;
                 console.log("Death " + currentScale.toFixed(1));
                 currentScale -= 0.1;
             } else {
                 clearInterval(intervalId);
             }
-        }, 10);
-        super.destroy();
+        }, 50);
     }
 }
 
