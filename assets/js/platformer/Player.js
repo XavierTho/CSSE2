@@ -156,6 +156,7 @@ export class Player extends Character{
             // Collision with the top of the Enemy
             if (this.collisionData.touchPoints.other.ontop) {
                 console.log("Bye Goomba");
+                this.y -= (this.bottom * .33)
             }
         }
     }
