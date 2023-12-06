@@ -53,20 +53,24 @@ export class Enemy extends Character {
             const originalSpeed = this.speed;
             this.speed *= 4; // You can adjust the multiplier based on your game's design
 
-            //Change the styling of the enemy
+            //Change the styling and scale of the enemy
             this.canvas.style.transform = 'scaleX(-1)';
             this.canvas.style.filter = 'invert(1)';
+            this.canvas.style.transform = 'scale(1.5)';
+
 
             // Set a timeout to revert the speed to the original value after a certain duration
             setTimeout(() => {
                 this.speed = originalSpeed;
                 this.canvas.style.transform = 'scaleX(1)';
                 this.canvas.style.filter = 'invert(0)';
+                this.canvas.style.transform = 'scale(1)';
 
                 this.specialActionActive = false; // Reset the flag after the timeout
             }, 3000);
-
-            this.specialActionActive = true; // Set the flag to indicate that the special action is active
+            
+            // Set the flag to indicate that the special action is active
+            this.specialActionActive = true;
         }
     }
 
