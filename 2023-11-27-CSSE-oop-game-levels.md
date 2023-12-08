@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Dynamic Game Levels
-description: Early steps in adding levels to an OOP Game.  This includes basic animations left-right-jump, multiple background, and simple callback to terminate each level.
+description: Early steps in adding levels to an OOP Game. This includes basic animations left-right-jump, multiple backgrounds, and simple callback to terminate each level.
 type: ccc
 courses: { csse: {week: 14}, csp: {week: 14}, csa: {week: 14} }
 image: /images/platformer/backgrounds/hills.png
@@ -14,9 +14,14 @@ image: /images/platformer/backgrounds/hills.png
     }
 </style>
 
+<!-- Load the YouTube Iframe API script -->
+<script async src="https://www.youtube.com/iframe_api"></script>
+
 <!-- Prepare DOM elements -->
 <!-- Wrap both the canvas and controls in a container div -->
 <div id="canvasContainer">
+    <!-- Add this div to contain the YouTube video player -->
+    <div id="youtubePlayer"></div>
     <div id="gameBegin" hidden>
         <button id="startGame">Start Game</button>
     </div>
@@ -34,7 +39,7 @@ image: /images/platformer/backgrounds/hills.png
     import GameEnv from '{{site.baseurl}}/assets/js/platformer/GameEnv.js';
     import GameLevel from '{{site.baseurl}}/assets/js/platformer/GameLevel.js';
     import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
-
+    import  { playMusic } from '{{site.baseurl}}/assets/js/platformer/Music.js';
 
     /*  ==========================================
      *  ======= Data Definitions =================
@@ -87,9 +92,8 @@ image: /images/platformer/backgrounds/hills.png
           width: 448,
           height: 452,
         }
-    },
-  }
-
+      }
+    }
 
     // add File to assets, ensure valid site.baseurl
     Object.keys(assets).forEach(category => {
@@ -124,22 +128,25 @@ image: /images/platformer/backgrounds/hills.png
           waitButton.addEventListener('click', waitButtonListener);
       });
     }
-
+  
     // Start button callback
     async function startGameCallback() {
       const id = document.getElementById("gameBegin");
       id.hidden = false;
-      
+
       // Use waitForRestart to wait for the restart button click
       await waitForButton('startGame');
       id.hidden = true;
-      
+
+      // Play music after start game button is pressed
+      playMusic();
+
       return true;
     }
 
     // Home screen exits on Game Begin button
     function homeScreenCallback() {
-      // gameBegin hidden means game has started
+      // gameBegin hidden means the game has started
       const id = document.getElementById("gameBegin");
       return id.hidden;
     }
@@ -148,11 +155,11 @@ image: /images/platformer/backgrounds/hills.png
     async function gameOverCallBack() {
       const id = document.getElementById("gameOver");
       id.hidden = false;
-      
+
       // Use waitForRestart to wait for the restart button click
       await waitForButton('restartGame');
       id.hidden = true;
-      
+
       // Change currentLevel to start/restart value of null
       GameEnv.currentLevel = null;
 
@@ -162,10 +169,10 @@ image: /images/platformer/backgrounds/hills.png
     /*  ==========================================
      *  ========== Game Level setup ==============
      *  ==========================================
-     * Start/Homme sequence
+     * Start/Home sequence
      * a.) the start level awaits for button selection
      * b.) the start level automatically cycles to home level
-     * c.) the home advances to 1st game level when button selection is made
+     * c.) the home advances to the 1st game level when the button selection is made
     */
     // Start/Home screens
     new GameLevel( {tag: "start", callback: startGameCallback } );

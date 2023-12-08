@@ -15,8 +15,6 @@ export class Player extends Character{
         // Player Data is required for Animations
         this.playerData = playerData;
 
-        this.spriteScale = 1;
-
         // Player control data
         this.pressedKeys = {};
         this.movement = {left: true, right: true, down: true};
@@ -114,6 +112,11 @@ export class Player extends Character{
         if (this.isGravityAnimation("w")) {
             if (this.movement.down) this.y -= (this.bottom * .33);  // jump 33% higher than bottom
         } 
+
+        //Prevents Player from leaving screen
+        if (this.x <= 0) {
+            this.x += 5
+        }
 
         // Perform super update actions
         super.update();

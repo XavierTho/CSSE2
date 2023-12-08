@@ -17,8 +17,6 @@ export class Enemy extends Character {
         // Player Data is required for Animations
         this.enemyData = enemyData;
 
-        this.spriteScale = 1;
-
         //Initial Position of Goomba
         this.x = .60 * GameEnv.innerWidth;
     }
@@ -30,6 +28,16 @@ export class Enemy extends Character {
             this.speed = -this.speed;
         }
 
+        //Randomly change when the Goomba changes position
+        if (Math.random() < 0.006) {
+            this.speed = Math.random() < 0.5 ? -this.speed : this.speed;
+        }
+
+        //Randomly turn Goomba into God Mode
+        if (Math.random() < 0.01) {
+            this.performGoombaSpecial();
+        }
+
         //Initially get the enemy moving
         this.x += this.speed;
         
@@ -39,6 +47,34 @@ export class Enemy extends Character {
             console.log("destroyed");
         };
     };
+    
+    performGoombaSpecial() {
+        if (!this.specialActionActive) {
+            // Temporary increase in speed
+            const originalSpeed = this.speed;
+            this.speed *= 4; // You can adjust the multiplier based on your game's design
+
+            //Change the styling and scale of the enemy
+            this.canvas.style.transform = 'scaleX(-1)';
+            this.canvas.style.filter = 'invert(1)';
+            this.canvas.style.transform = 'scale(1.5)';
+
+
+            // Set a timeout to revert the speed to the original value after a certain duration
+            setTimeout(() => {
+                this.speed = originalSpeed;
+                this.canvas.style.transform = 'scaleX(1)';
+                this.canvas.style.filter = 'invert(0)';
+                this.canvas.style.transform = 'scale(1)';
+
+                this.specialActionActive = false; // Reset the flag after the timeout
+            }, 3000);
+            
+            // Set the flag to indicate that the special action is active
+            this.specialActionActive = true;
+        }
+    }
+
 
     /* murder() {
         let i = 1;
@@ -52,6 +88,7 @@ export class Enemy extends Character {
             }
         }, 50);
     } */
+    
 }
 
 export {destroy}
