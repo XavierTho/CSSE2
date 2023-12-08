@@ -15,8 +15,6 @@ export class Enemy extends Character {
         // Player Data is required for Animations
         this.enemyData = enemyData;
 
-        this.spriteScale = 1;
-
         //Initial Position of Goomba
         this.x = .60 * GameEnv.innerWidth;
     }

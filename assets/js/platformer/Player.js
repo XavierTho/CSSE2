@@ -15,8 +15,6 @@ export class Player extends Character{
         // Player Data is required for Animations
         this.playerData = playerData;
 
-        this.spriteScale = 1;
-
         // Player control data
         this.pressedKeys = {};
         this.movement = {left: true, right: true, down: true};
