@@ -39,6 +39,7 @@ image: /images/platformer/backgrounds/hills.png
     import GameEnv from '{{site.baseurl}}/assets/js/platformer/GameEnv.js';
     import GameLevel from '{{site.baseurl}}/assets/js/platformer/GameLevel.js';
     import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
+    import  { playMusic } from '{{site.baseurl}}/assets/js/platformer/Music.js';
 
     /*  ==========================================
      *  ======= Data Definitions =================
@@ -127,20 +128,18 @@ image: /images/platformer/backgrounds/hills.png
           waitButton.addEventListener('click', waitButtonListener);
       });
     }
-
+  
     // Start button callback
     async function startGameCallback() {
       const id = document.getElementById("gameBegin");
       id.hidden = false;
 
-      // Start playing the YouTube video
-      if (youtubePlayer) {
-          youtubePlayer.playVideo();
-      }
-
       // Use waitForRestart to wait for the restart button click
       await waitForButton('startGame');
       id.hidden = true;
+
+      // Play music after start game button is pressed
+      playMusic();
 
       return true;
     }
@@ -188,39 +187,6 @@ image: /images/platformer/backgrounds/hills.png
      *  ========== Game Control ==================
      *  ==========================================
     */
-
-    // Define the YouTube video ID
-const youtubeVideoId = 'KCiVG6mTor0';
-
-// Initialize the YouTube video player
-let youtubePlayer;
-function onYouTubeIframeAPIReady() {
-    youtubePlayer = new YT.Player('youtubePlayer', {
-        height: '0',
-        width: '0',
-        videoId: youtubeVideoId,
-        playerVars: {
-            autoplay: 1,
-            loop: 1,
-            controls: 0,
-            showinfo: 0,
-            mute: 0,
-        },
-        events: {
-            onReady: onPlayerReady
-        }
-    });
-}
-
-// Callback function when the YouTube player is ready
-function onPlayerReady(event) {
-    // Uncomment the following line if you want the video to start playing immediately
-    event.target.playVideo();
-}
-
-// Add the onYouTubeIframeAPIReady function to the global scope
-window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-
 
     // create listeners
     toggleCanvasEffect.addEventListener('click', GameEnv.toggleInvert);
