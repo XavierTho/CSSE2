@@ -1,7 +1,7 @@
 import GameEnv from './GameEnv.js';
 import Character from './Character.js';
 import deathController from './Death.js';
-import Enemy from './Enemy.js';
+import {Enemy, destroy} from './Enemy.js';
 
 export class Player extends Character{
     // constructors sets up Character object 
@@ -158,7 +158,7 @@ export class Player extends Character{
             if (this.collisionData.touchPoints.other.ontop) {
                 console.log("Bye Goomba");
                 this.y -= (this.bottom * .33);
-                this.collisionData.touchPoints.other.destroy();
+                destroy = 1;
             }
         }
     }

@@ -1,6 +1,8 @@
 import Character from './Character.js';
 import GameEnv from './GameEnv.js';
 
+var destroy = 0;
+
 export class Enemy extends Character {
     // constructors sets up Character object 
     constructor(canvas, image, speedRatio, enemyData){
@@ -10,8 +12,8 @@ export class Enemy extends Character {
             enemyData.width, 
             enemyData.height, 
         );
-        this.destruction = 0;
 
+        destroy = 0;
         // Player Data is required for Animations
         this.enemyData = enemyData;
 
@@ -32,10 +34,11 @@ export class Enemy extends Character {
         this.x += this.speed;
         
         //detect if the goomba is dead
-        if (this.destruction === 1) {
+        if (destroy === 1) {
             this.destroy();
-        }
-    }
+            console.log("destroyed");
+        };
+    };
 
     /* murder() {
         let i = 1;
@@ -51,5 +54,5 @@ export class Enemy extends Character {
     } */
 }
 
-
+export {destroy}
 export default Enemy
