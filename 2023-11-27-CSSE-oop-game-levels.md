@@ -21,7 +21,6 @@ image: /images/platformer/backgrounds/hills.png
 <!-- Wrap both the canvas and controls in a container div -->
 <div id="canvasContainer">
     <!-- Add this div to contain the YouTube video player -->
-    <div id="youtubePlayer"></div>
     <div id="gameBegin" hidden>
         <button id="startGame">Start Game</button>
     </div>
@@ -32,6 +31,9 @@ image: /images/platformer/backgrounds/hills.png
     <div id="gameOver" hidden>
         <button id="restartGame">Restart</button>
     </div>
+    <div id="reset">
+        <button id="resetButton">Reset LeaderBoard</button>
+    </div>
 </div>
 
 <script type="module">
@@ -40,6 +42,9 @@ image: /images/platformer/backgrounds/hills.png
     import GameLevel from '{{site.baseurl}}/assets/js/platformer/GameLevel.js';
     import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
     import  { playMusic } from '{{site.baseurl}}/assets/js/platformer/Music.js';
+
+    let resetButton = document.getElementById("resetButton");
+    resetButton.addEventListener("click", localStorage.clear());
 
     /*  ==========================================
      *  ======= Data Definitions =================
